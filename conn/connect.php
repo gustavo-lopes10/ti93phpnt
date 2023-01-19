@@ -1,7 +1,7 @@
 <?php 
 
 $host = "localhost";
-$database = "tiphpdb01";
+$database = "ti93phpdb01";
 $user = "root";
 $pass = "";
 $charset = "utf8";
