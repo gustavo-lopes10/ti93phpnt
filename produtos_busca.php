@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/estilo.css">
     <title>Busca por palavra</title>
-</head>
+</head> 
 <body class="fundofixo">
     <?php include 'menu_publico.php'; ?>
 </body>
