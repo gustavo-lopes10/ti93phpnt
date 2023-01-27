@@ -43,11 +43,11 @@ $num_linhas = $lista->num_rows;
                                     <strong><?php echo $row_destaque['rotulo_tipo']?></strong>   
                                 </p>
                                 <p class="text-left">
-                                    <?php echo mb_strimwidth($row_destaque['resumo_produto'],0,42,'...'); ?>
+                                    <?php echo mb_strimwidth($row_destaque['resumo_produto'],0,42,'...');?>
                                 </p>
                                 <p>
                                     <button class="btn btn-default disabled" role="button" style="cursor:default;">
-                                        <?php echo "R$ ".number_format($row_destaque['valor_produto'],2,) ?>
+                                        <?php echo "R$ ".number_format($row_destaque['valor_produto'],2,",",".");?>
                                     </button>
                                     <a href="produto_detalhes.php?id_produto=<?php echo $row_destaque['id_produto']?>">
                                         <span class="hidden-xs">Saiba mais...</span>

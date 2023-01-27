@@ -13,7 +13,7 @@ $rows_tipos = $lista_tipos->fetch_all();
 </head>
 <body>
     <!-- abre a barra de navegação -->
-    <nav class="fixed navbar navbar-fixed-top navbar-light navbar-inverse bg-light">
+    <nav class="fixed navbar fixed-top navbar-light navbar-inverse bg-light">
         <div class="container-fluid">
             <!-- agrupamento mobile -->
             <div class="navbar-header">
