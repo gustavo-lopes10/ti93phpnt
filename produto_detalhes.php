@@ -21,7 +21,7 @@
 
         <!-- mostrar se a consulta retornou produtos -->
             <h2 class="breadcrumb alert-danger">
-                <strong>Produtos</strong>
+                <strong><?php echo $row_produto['descri_produto']?></strong>
             </h2>
             <div class="row">
                     <div class="col-sm-6 col-ms-4">

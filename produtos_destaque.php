@@ -15,7 +15,6 @@ $num_linhas = $lista->num_rows;
     <title>Destaques</title>
 </head>
 <body>
-  
         <!-- mostrar se a consulta retornar vazio  -->
         <?php if($num_linhas == 0){ ?>
             <h2 class="breadcrumb alert-danger">

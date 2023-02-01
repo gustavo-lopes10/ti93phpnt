@@ -17,12 +17,15 @@
     <main class="container">
         <!-- area de carrousel -->
         <?php include 'carousel.php'; ?>
+
         <!-- area de destaque -->
         <a name="destaques">&nbsp;</a>
         <?php include 'produtos_destaque.php'; ?>
+
         <!-- area geral de produtos -->
         <a name="produtos">&nbsp;</a>
         <?php include 'produtos_geral.php'; ?>
+        
         <!-- rodapé -->
         <footer class="panel-footer" style="background: none;">
         <?php include 'rodape.php'; ?>
