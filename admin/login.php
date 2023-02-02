@@ -27,7 +27,7 @@
             echo "<script>window.open('invasor.php','_self')</script>";
         }
     }
-
+    
 ?>
 
 <!DOCTYPE html>

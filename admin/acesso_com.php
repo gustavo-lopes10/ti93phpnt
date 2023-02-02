@@ -12,8 +12,8 @@
         exit;
     }
     $nome_da_sessao = session_name();
-    if(!isset($_SESSION['nome da sessão'])
-        OR ($_SESSION['nome_da_sessão']!=$nome_da_sessao)
+    if(!isset($_SESSION['nome_da_sessao'])
+        OR ($_SESSION['nome_da_sessao']!=$nome_da_sessao)
     ){
         session_destroy();
         header('location: login.php');
