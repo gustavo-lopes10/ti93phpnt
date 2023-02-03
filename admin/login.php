@@ -80,7 +80,7 @@
                                 <p class="text-center">
                                     <small>
                                         <br>
-                                        Caso não faça uma escolha em 15 segundos será redirecionado automaticamente para página inicial.
+                                        Caso não faça uma escolha em 30 segundos será redirecionado automaticamente para página inicial.
                                     </small>
                                 </p>
                             </div><!-- fecha alert -->

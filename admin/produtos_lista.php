@@ -14,7 +14,7 @@ $rows = $lista->num_rows;
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/estilo.css">
 </head>
-<body class="fundofixo"> 
+<body> 
     <?php include "menu_adm.php"; ?>
     <main class="container">
         <h2 class="breadcrumb alert-danger" >Lista de Produtos </h2>
@@ -69,7 +69,7 @@ $rows = $lista->num_rows;
                             <a href="produtos_atualiza.php?id_produto=<?php echo $row['id_produto'];?>" role="button" class="btn btn-warning btn-block btn-xs"> 
                             <span class="glyphicon glyphicon-refresh"></span> <span class="hidden-xs">ALTERAR</span>  
                             </a>
-                            <button 
+                            <button
                                 data-nome="<?php echo $row['descri_produto'];?>" 
                                 data-id="<?php echo $row['id_produto'];?>"
                                 class="delete btn btn-xs btn-block btn-danger"
