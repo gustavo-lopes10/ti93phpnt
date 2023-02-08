@@ -24,7 +24,7 @@
                 <strong><?php echo $row_produto['descri_produto']?></strong>
             </h2>
             <div class="row">
-                    <div class="col-sm-6 col-ms-4">
+                    <div class="col-sm-6 col-md-4">
                         <div class="thumbnail">
                                 <img src="images/<?php echo $row_produto['imagem_produto']?>" class="img-responsive img-roundes">
                             </a>

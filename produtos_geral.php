@@ -28,7 +28,7 @@ $num_linhas = $lista->num_rows;
             </h2>
             <div class="row">
                 <?php do{ ?>
-                    <div class="col-sm-6 col-ms-4">
+                    <div class="col-sm-6 col-md-4">
                         <div class="thumbnail">
                             <a href="produto_detalhes.php?id_produto=<?php echo $row_produtos['id_produto']?>">
                                 <img src="images/<?php echo $row_produtos['imagem_produto']?>" class="img-responsive img-roundes">

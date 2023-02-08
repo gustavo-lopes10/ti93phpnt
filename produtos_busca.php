@@ -4,8 +4,6 @@
     $lista = $conn->query("select * from vw_tbprodutos where descri_produto like '%$busca%'");
     $row_produto = $lista->fetch_assoc();
     $num_linhas = $lista->num_rows;
-
-
 ?>
 
 <!DOCTYPE html>
@@ -33,7 +31,7 @@
             </h2>
             <div class="row">
                 <?php do{ ?>
-                    <div class="col-sm-6 col-ms-4">
+                    <div class="col-sm-6 col-md-4">
                         <div class="thumbnail">
                             <a href="produto_detalhes.php?id_produto=<?php echo $row_produto['id_produto']?>">
                                 <img src="images/<?php echo $row_produto['imagem_produto']?>" class="img-responsive img-roundes">
