@@ -24,7 +24,7 @@ if($_POST){
                     set id_tipo_produto = '$id_tipo_produto',
                     destaque_produto = '$destaque_produto',
                     descri_produto = '$descri_produto',
-                    resumo_produto '$resumo_produto',
+                    resumo_produto = '$resumo_produto',
                     valor_produto = '$valor_produto',
                     imagem_produto = '$nome_img'
                      where id_produto = $id;";
