@@ -14,10 +14,10 @@
     <!-- area de menu -->
     <?php include 'menu_publico.php'; ?>
     <a name="home">&nbsp;</a>
+    
     <main class="container">
         <!-- area de carrousel -->
-        <?php include 'carousel.php'; ?>
-
+    <?php include 'carousel.php'; ?>
         <!-- area de destaque -->
         <a name="destaques">&nbsp;</a>
         <?php include 'produtos_destaque.php'; ?>

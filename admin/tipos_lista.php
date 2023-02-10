@@ -25,6 +25,7 @@ $nlinhas = $lista_fk->num_rows;
             <thead>
                 <th class="hidden">ID</th>
                 <th>TIPO</th>
+                <th>SIGLA</th>
                 <th>
                     <a href="tipos_insere.php" target="_self" class="btn btn-block btn-primary btn-xs" role="button">
                         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
@@ -42,6 +43,9 @@ $nlinhas = $lista_fk->num_rows;
                         </td>
                         <td>
                             <?php echo $row_fk['rotulo_tipo'];?>
+                        </td>
+                        <td> 
+                            <?php echo $row_fk['sigla_tipo'];?> 
                         </td>
                         <td>
                         <a href="tipos_atualiza.php?id_tipo=<?php echo $row_fk['id_tipo'];?>" role="button" class="btn btn-warning btn-block btn-xs"> 

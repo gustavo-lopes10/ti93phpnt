@@ -23,7 +23,7 @@ $rows_tipos = $lista_tipos->fetch_all();
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button> 
-                <a href="index.php" class="navbar-brand">
+                <a href="index.php" class="">
                     <img src="images/logo.png" alt="logotipo">
                 </a> 
             </div>

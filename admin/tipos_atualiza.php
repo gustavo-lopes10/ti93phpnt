@@ -3,23 +3,17 @@ include 'acesso_com.php';
 include '../conn/connect.php';
 
 if($_POST){ 
-    if($_FILES['imagem_produto']['name']){
-        $nome_img = $_FILES['imagem_produto']['name'];
-        $tmp_img = $_FILES['imagem_produto']['tmp_name'];
-        $dir_img = "../images/".$nome_img;
-        move_uploaded_file($tmp_img, $dir_img);
-    }else{
-        $nome_img = $_POST['imagem_produto_atual'];
-    }
-    $id_tipo = $_POST['id_tipo'];
-    $rotulo_tipo = $_POST['rotulo_tipo'];
+    $tipo = $_POST['rotulo_tipo'];
+    $sigla = $_POST['sigla_tipo'];
+    $id = $_POST['id_tipo'];
 
-    $updateSql = "update tbprodutos
-                    set rotulo_tipo = '$rotulo_tipo',
-                     where id_tipo = $id_tipo;";
+    $updateSql = "update tbtipos
+                    set sigla_tipo = '$sigla',
+                    rotulo_tipo = '$tipo'
+                     where id_tipo = $id;";
     $resultado = $conn->query($updateSql);
     if($resultado){
-        header('location: produtos_lista.php');
+        header('location: tipos_lista.php');
     }
 }
 if($_GET){
@@ -27,12 +21,8 @@ if($_GET){
 }else{
     $id_form = 0;
 }
-$lista = $conn->query("select * from tbprodutos where id_produto = $id_form");
-$row = $lista->fetch_assoc();
-$numRows = $lista->num_rows;
-
     //selecionar os dados de chave estrangeira (lista de tipos de produtos)
-    $consulta_fk = "select * from tbtipos order by rotulo_tipo";
+    $consulta_fk = "select * from tbtipos where id_tipo = $id_form";
     $lista_fk = $conn->query($consulta_fk);
     $row_fk = $lista_fk->fetch_assoc();
     $nlinhas = $lista_fk->num_rows;
@@ -44,7 +34,7 @@ $numRows = $lista->num_rows;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/estilo.css">
-    <title>Produto - Insere</title>
+    <title>Tipos - Atualiza</title>
 </head>
 <body>
 <?php include 'menu_adm.php';?>    
@@ -57,39 +47,62 @@ $numRows = $lista->num_rows;
                         <span class="glyphicon glyphicon-chevron-left"></span>
                     </button>
                 </a>
-                Atualizando Tipo
+                Alterando Tipo
             </h2>
             <div class="thumnail">
                 <div class="alert alert-danger" role="alert">
-                    <form action="produtos_atualiza.php" method="post" 
-                    name="form_produto_insere" enctype="multipart/form-data"
-                    id="form_produto_insere">
-
-                    <input type="hidden" name="id_tipo" id="id_tipo" value="<?php echo $row['id_tipo'] ?>">
-
-                        <label for="id_tipo">Tipo: </label>
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>
-                            </span>
-                            <select name="id_tipo" id="id_tipo" class="form-control" required>
-                                <?php do {?>
-                                    <option value="<?php echo $row_fk['id_tipo'];?>"
-                                        <?php if(!(strcmp($row_fk['id_tipo'],$row['id_tipo']))){
-                                            echo "selected=\"selected\"";                                
-                                        }
-                                        ?> >
-                                        <?php echo $row_fk['rotulo_tipo'];?>
-                                    </option>
-                                <?php } while($row_fk=$lista_fk->fetch_assoc()); ?>
-                            </select>
-                        </div>
-                    </form>
+                <form action="tipos_atualiza.php" method="post" name="form_tipo_atualiza" enctype="multipart/form-data" id="form_tipo_atualiza">
+                       <input type="hidden" name="id_tipo" id="id_tipo" value="<?php echo $row_fk['id_tipo'] ?>">
+                       <label for="sigla_tipo">Sigla:</label>
+                           <div class="input-group">
+                               <span class="input-group-addon">
+                                   <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                               </span>
+                               <input type="text" name="sigla_tipo" id="sigla_tipo" class="form-control" placeholder="Digite a Sigla do tipo" maxlength="100" value="<?php echo $row_fk['sigla_tipo']; ?>" required>
+                           </div>
+                           <label for="rotulo_tipo">Rotulo:</label>
+                           <div class="input-group">
+                               <span class="input-group-addon">
+                                   <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
+                               </span>
+                               <input type="text" name="rotulo_tipo" id="rotulo_tipo" class="form-control" placeholder="Digite o rotulo do Tipo" maxlength="100" value="<?php echo $row_fk['rotulo_tipo']; ?>" required>
+                           </div>
+                           <br>
+                           <input type="submit" name="alterar" class="bt btn-danger btn-block" id="alterar" value="Atualizar">
+                       </form>
                 </div>
             </div>
         </div>
     </div>
 </main>
+
+<!-- Script para imagem  -->
+<script>
+    document.getElementById("imagem_produto").onchange = function(){ //quanto o elemento sofrer alteração (colocar imagem) a função é chamada
+        var reader = new FileReader();
+        if(this.files[0].size>512000){
+            alert("A imagem deve ter no máximo 500KB");
+            $("#imagem").attr("src","blank");
+            $("#imagem").hide();
+            $("#imagem_produto").wrap('<form>').closest('form').get(0).reset();
+            $("#imagem_produto").unwrap();
+            return false
+        }
+        if(this.files[0].type.indexOf("image")==-1){
+            alert("formato inválido, escolha uma imagem!");
+            $("#imagem").attr("src","blank");
+            $("#imagem").hide();
+            $("#imagem_produto").wrap('<form>').closest('form').get(0).reset();
+            $("#imagem_produto").unwrap();
+            return false
+        }
+        reader.onload = function(e){
+            document.getElementById("imagem").src = e.target.result
+            $("#imagem").show();
+        }
+        reader.readAsDataURL(this.files[0])
+    }
+</script>
 
 </body>
 </html>
