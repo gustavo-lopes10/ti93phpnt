@@ -42,7 +42,7 @@ if($_GET){
     <div class="row">
         <div class="col-xs-12 col-sm-offset-2 col-sm-6 col-md-8">
             <h2 class="breadcrumb text-danger">
-                <a href="produtos_lista.php">
+                <a href="tipos_lista.php">
                     <button class="btn btn-danger">
                         <span class="glyphicon glyphicon-chevron-left"></span>
                     </button>
@@ -75,34 +75,5 @@ if($_GET){
         </div>
     </div>
 </main>
-
-<!-- Script para imagem  -->
-<script>
-    document.getElementById("imagem_produto").onchange = function(){ //quanto o elemento sofrer alteração (colocar imagem) a função é chamada
-        var reader = new FileReader();
-        if(this.files[0].size>512000){
-            alert("A imagem deve ter no máximo 500KB");
-            $("#imagem").attr("src","blank");
-            $("#imagem").hide();
-            $("#imagem_produto").wrap('<form>').closest('form').get(0).reset();
-            $("#imagem_produto").unwrap();
-            return false
-        }
-        if(this.files[0].type.indexOf("image")==-1){
-            alert("formato inválido, escolha uma imagem!");
-            $("#imagem").attr("src","blank");
-            $("#imagem").hide();
-            $("#imagem_produto").wrap('<form>').closest('form').get(0).reset();
-            $("#imagem_produto").unwrap();
-            return false
-        }
-        reader.onload = function(e){
-            document.getElementById("imagem").src = e.target.result
-            $("#imagem").show();
-        }
-        reader.readAsDataURL(this.files[0])
-    }
-</script>
-
 </body>
 </html>

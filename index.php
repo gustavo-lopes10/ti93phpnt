@@ -17,7 +17,10 @@
     
     <main class="container">
         <!-- area de carrousel -->
-    <?php include 'carousel.php'; ?>
+    <?php include 'carousel.php'; ?><br><br>
+
+    <div><a href=""><img src="images/faixa_promocao.png" alt=""></a></div>
+    
         <!-- area de destaque -->
         <a name="destaques">&nbsp;</a>
         <?php include 'produtos_destaque.php'; ?>

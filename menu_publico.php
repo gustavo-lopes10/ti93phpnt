@@ -33,9 +33,10 @@ $rows_tipos = $lista_tipos->fetch_all();
                     <ul class="nav navbar-nav navbar-right">
                         <li class="active">
                             <a href="index.php">
-                                <span class="glyphicon gliphicon-home"></span>
+                                <span class="glyphicon glyphicon-home"></span>
                             </a>
                         </li>
+                        <li class="btn-danger"><a href="">Faça sua Reserva</a></li>
                         <li><a href="index.php#destaques">Destaques</a></li>
                         <li><a href="index.php#produtos">Produtos</a></li>
                         <!-- dropdown -->
