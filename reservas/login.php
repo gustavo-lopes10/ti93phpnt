@@ -3,9 +3,10 @@
     include '../conn/connect.php';
       // iniciar a verificação do login
       if($_POST){
-        $login = $_POST['login_usuario'];
+        $cpf = $_POST['cpf_usuario'];
+        $email = ($_POST['email_usuario']);
         $senha = md5($_POST['senha_usuario']);
-        $loginRes = $conn->query("select * from tbusuarios where login_usuario = '$login' and senha_usuario = '$senha'");
+        $loginRes = $conn->query("select * from usuarios_reserva where email = '$email' and cpf = '$cpf' and senha = '$senha'");
         $rowLogin = $loginRes->fetch_assoc();
         $numRow = mysqli_num_rows($loginRes);
         // se a sessão não existir
@@ -15,26 +16,22 @@
             $session_name_new = session_name();
         }
         if($numRow>0){
-            $_SESSION['login_usuario'] = $login;
-            $_SESSION['nivel_usuario'] = $rowLogin['nivel_usuario'];
+            $_SESSION['cpf_usuario'] = $cpf;
+            $_SESSION['email_usuario'] = $rowLogin['email'];
             $_SESSION['nome_da_sessao'] = session_name();
-            if($rowLogin['nivel_usuario']=='sup'){
-                echo "<script>window.open('index.php','_self')</script>";
+            $id = $rowLogin['id_usuario_reserva'];
+            header('location: reservas.php'."?id_usuario_reserva=$id");
             }else{
-                echo "<script>window.open('../cliente/index.php?cliente=".$login."','_self')</script>";
+                 echo "<h4>Acesso negado. Tente novamente</h4><br>";
             }
-        }else{
-            echo "<script>window.open('invasor.php','_self')</script>";
         }
-    }
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="30;URL=../index.php">
+    <meta http-equiv="refresh" content="50;URL=../index.php">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <script src="https://kit.fontawesome.com/2495680ceb.js" crossorigin="anonymous"></script>
@@ -49,7 +46,15 @@
         <section>
             <article>
                 <div class="row">
-                    <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                    <div class="col-xs-12 col-sm-12 col-md-12 bg-danger">
+                        <h1 class="text-center text-danger">Informações de Reserva</h1>
+                        <ol>
+                            <li>A reserva só poderá ser feita com no mínimo 48 horas de antecedência e no máximo 90 dias.</li>
+                            <li>Apenas um pedido de reserva por dia para um mesmo cpf.</li>
+                            <li>Reservas realizadas podem ser canceladas pelo cliente.</li>
+                            <li>Em caso de confirmação o cliente receberá uma notificação por email com o código gerado pelo sistema (Número de reserva) em formato numérico</li>
+                            <li>Em caso de pedido de reserva negado, o cliente recebe por email essa informação.</li>
+                        </ol>
                         <h1 class="breadcrumb text-info text-center">Faça seu login</h1>
                         <div class="thumbnail">
                             <p class="text-info text-center" role="alert">
@@ -58,12 +63,19 @@
                             <br>
                             <div class="alert alert-info" role="alert">
                                 <form action="login.php" name="form_login" id="form_login" method="POST" enctype="multipart/form-data">
-                                    <label for="login_usuario">Login:</label>
+                                    <label for="cpf_usuario">CPF:</label>
                                     <p class="input-group">
                                         <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-user text-info" aria-hidden="true"></span>
                                         </span>
-                                        <input type="text" name="login_usuario" id="login_usuario" class="form-control" autofocus required autocomplete="off" placeholder="Digite seu login.">
+                                        <input type="text" name="cpf_usuario" id="cpf_usuario" class="form-control" autofocus required autocomplete="off" placeholder="Digite seu login.">
+                                    </p>
+                                    <label for="email_usuario">E-mail:</label>
+                                    <p class="input-group">
+                                        <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-user text-info" aria-hidden="true"></span>
+                                        </span>
+                                        <input type="email" name="email_usuario" id="email_usuario" class="form-control" required autocomplete="off" placeholder="Digite sua senha.">
                                     </p>
                                     <label for="senha_usuario">Senha:</label>
                                     <p class="input-group">
@@ -76,10 +88,11 @@
                                         <input type="submit" value="Entrar" class="btn btn-primary">
                                     </p>
                                 </form>
+                                <a href="cadastro.php"><h5 class="text-center">Primeiro acesso? Faça seu cadastro aqui</h5></a>
                                 <p class="text-center">
                                     <small>
                                         <br>
-                                        Caso não faça uma escolha em 30 segundos será redirecionado automaticamente para página inicial.
+                                        Caso não faça o login em 50 segundos será redirecionado automaticamente para página inicial.
                                     </small>
                                 </p>
                             </div><!-- fecha alert -->
