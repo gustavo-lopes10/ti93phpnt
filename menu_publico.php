@@ -36,7 +36,7 @@ $rows_tipos = $lista_tipos->fetch_all();
                                 <span class="glyphicon glyphicon-home"></span>
                             </a>
                         </li>
-                        <li class="btn-danger"><a href="">Faça sua Reserva</a></li>
+                        <li class="btn-danger"><a href="reservas/login.php">Faça sua Reserva</a></li>
                         <li><a href="index.php#destaques">Destaques</a></li>
                         <li><a href="index.php#produtos">Produtos</a></li>
                         <!-- dropdown -->
