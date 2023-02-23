@@ -13,16 +13,18 @@
     <?php 
 include '../conn/connect.php';
 
+if($_GET){
+    $id_usuario = $_GET['id_usuario_reserva'];
+}
+
 if($_POST){ 
     $date = $_POST['data_reserva'];
     $status = "enviado";
     $num_pess = $_POST['numero_pessoas'];
-    $now = new DateTime(); 
-    if($_GET){
-        $id_usuario = $_GET['id_usuario_reserva'];
-    }
+    $now = date('Y-m-d');
+   
     $insertSql = "INSERT INTO pedido_reserva (data_atu, data_reserv, num_pess, status_pedido, id_usuario_reserva,)
-                   values('$now','$date','$num_pess','$status', '$id_usuario')";
+                  values('$now','$date','$num_pess','$status', '$id_usuario')";
     $resultado = $conn->query($insertSql);
     if($resultado){
         header('location: reservas.php');
@@ -48,7 +50,7 @@ if($_POST){
             </h2>
             <div class="thumnail">
                 <div class="alert alert-danger" role="alert">
-                <form action="reservas.php" method="post" name="form_tipo_atualiza" enctype="multipart/form-data" id="form_tipo_atualiza">
+                <form action="reservas.php?id_usuario_reserva=<?php echo $id_usuario ?>" method="post" name="form_tipo_atualiza" enctype="multipart/form-data" id="form_tipo_atualiza">
                        <input type="hidden" name="id_tipo" id="id_tipo">
                        <label for="sigla_tipo">Data da Reserva:</label>
                            <div class="input-group">
